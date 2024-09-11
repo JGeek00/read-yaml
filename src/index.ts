@@ -1,7 +1,6 @@
 import { setFailed, setOutput, getInput } from '@actions/core'
 import { promises as fs } from 'fs'
 import { load } from 'js-yaml'
-import { exec } from 'child_process';
 
 const run = async () => {
     try {
@@ -18,7 +17,7 @@ const run = async () => {
         }
 
         let output = keys.reduce((dict: any, key) => dict[key], yamlData)
-        exec(`echo "data=${output}" >> $GITHUB_OUTPUT`)
+        setOutput('data', output)
     } catch (error) {
         setFailed((error as Error).message)
     }
