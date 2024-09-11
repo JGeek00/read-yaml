@@ -21,8 +21,4 @@ jobs:
           file: './action.yml'
           key-path: '["runs", "using"]'
         
-      - name: Get read-yaml outputs
-        run: |
-          echo '${{ steps.using.outputs.data }}'
-          echo '${{ steps.desc.outputs.data }}'
-          echo '${{ env.GITHUB_OUTPUT }}'
+      
