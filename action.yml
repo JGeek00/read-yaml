@@ -1,4 +1,4 @@
-name: 'Read yaml'
+name: 'Read YAML files'
 description: 'Read data from a YAML file'
 branding:
   icon: book

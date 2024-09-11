@@ -27,9 +27,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Run read-yaml action
+      - name: Run read-yaml-files action
         id: yaml-data
-        uses: jbutcher5/read-yaml@main      # You may wish to replace main with a version tag such as '1.6' etc.
+        uses: jgeek00/read-yaml-files@master      # You may wish to replace main with a version tag such as '1.6' etc.
         with:
           file: './action.yml'          # File to read from
           key-path: '["runs", "using"]' # Access the runs key then the using key and retuns the value.
@@ -38,7 +38,4 @@ jobs:
         run: echo "${{ steps.yaml-data.outputs.data }}"
 ```
 
-## Contributing and Local Development
-Check the [CONTRIBUTING](./CONTRIBUTING.md) guidelines for information on how to contribute
-to read-yaml
-
+##### Originally developed by [jbutcher5](https://github.com/jbutcher5/read-yaml)
