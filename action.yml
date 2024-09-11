@@ -1,8 +1,8 @@
 name: 'Read YAML files'
 description: 'Read data from a YAML file'
 branding:
-  icon: book
-  color: yellow  
+  icon: file
+  color: green
 
 inputs:
   file:
