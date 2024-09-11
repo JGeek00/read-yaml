@@ -25,3 +25,4 @@ jobs:
         run: |
           echo '${{ steps.using.outputs.data }}'
           echo '${{ steps.desc.outputs.data }}'
+          echo '${{ env.GITHUB_OUTPUT }}'
