@@ -13,10 +13,10 @@ inputs:
     description: 'List of keys to follow'
     required: true
 
-output:
+outputs:
   data:
-    description: 'Data read from YAML file'
+    description: 'Value of the selected key'
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
