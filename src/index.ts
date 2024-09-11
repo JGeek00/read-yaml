@@ -2,12 +2,6 @@ import * as core from '@actions/core'
 import { promises as fs } from 'fs'
 import * as yaml from 'js-yaml'
 
-async function setOutput(key: string, value: any) {
-  // Temporary hack until core actions library catches up with github new recommendations
-  const output = process.env['GITHUB_OUTPUT']!
-  await fs.appendFile(output, `${key}=${value}`)
-}
-
 const run = async () => {
     try {
         if (!process.env['GITHUB_OUTPUT']) {
@@ -28,7 +22,7 @@ const run = async () => {
         }
 
         let output = keys.reduce((dict: any, key) => dict[key], yamlData)
-        await setOutput('data', output)
+        core.setOutput('data', output)
     } catch (error) {
         core.setFailed((error as Error).message)
     }
