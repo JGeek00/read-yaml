@@ -23,5 +23,5 @@ jobs:
         
       - name: Get read-yaml outputs
         run: |
-          echo '${{ env.GITHUB_OUTPUT }}'
-          echo '${{ env.GITHUB_STATE }}'
+          echo '${{ steps.using.outputs.data }}'
+          echo '${{ steps.desc.outputs.data }}'
