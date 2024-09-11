@@ -1,6 +1,7 @@
 import { setFailed, setOutput, getInput } from '@actions/core'
 import { promises as fs } from 'fs'
-import * as yaml from 'js-yaml'
+import { load } from 'js-yaml'
+import { exec } from 'child_process';
 
 const run = async () => {
     try {
@@ -9,7 +10,7 @@ const run = async () => {
 
         const content = await fs.readFile(file, 'utf8')
 
-        let yamlData = yaml.load(content)
+        let yamlData = load(content)
 
         if (yamlData == null || yamlData == undefined) {
             setFailed('Error in reading the yaml file')
@@ -17,7 +18,7 @@ const run = async () => {
         }
 
         let output = keys.reduce((dict: any, key) => dict[key], yamlData)
-        setOutput('data', output)
+        exec(`echo "data=${output}" >> $GITHUB_OUTPUT`)
     } catch (error) {
         setFailed((error as Error).message)
     }
