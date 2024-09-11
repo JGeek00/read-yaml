@@ -1,30 +1,25 @@
-import * as core from '@actions/core'
+import { setFailed, setOutput, getInput } from '@actions/core'
 import { promises as fs } from 'fs'
 import * as yaml from 'js-yaml'
 
 const run = async () => {
     try {
-        if (!process.env['GITHUB_OUTPUT']) {
-            core.setFailed('GITHUB_OUTPUT env variable not defined')
-            return
-        }
-
-        const file = core.getInput('file')
-        const keys: string[] = JSON.parse(core.getInput('key-path'))
+        const file = getInput('file')
+        const keys: string[] = JSON.parse(getInput('key-path'))
 
         const content = await fs.readFile(file, 'utf8')
 
         let yamlData = yaml.load(content)
 
         if (yamlData == null || yamlData == undefined) {
-            core.setFailed('Error in reading the yaml file')
+            setFailed('Error in reading the yaml file')
             return
         }
 
         let output = keys.reduce((dict: any, key) => dict[key], yamlData)
-        core.setOutput('data', output)
+        setOutput('data', output)
     } catch (error) {
-        core.setFailed((error as Error).message)
+        setFailed((error as Error).message)
     }
 }
 
